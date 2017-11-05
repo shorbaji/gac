@@ -14,6 +14,6 @@ class MainHandler(tornado.web.RequestHandler):
             self.write(json.dumps({"results" : [r.get(result).decode() for result in search(query)]}))
 
 if __name__ == "__main__":
-    r= redis.Redis()
+    r= redis.Redis(host="10.142.0.5")
     tornado.web.Application([(r"/", MainHandler),]).listen(80)
     tornado.ioloop.IOLoop.current().start()
